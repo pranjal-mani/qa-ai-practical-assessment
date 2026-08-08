@@ -6,7 +6,7 @@ module.exports = defineConfig({
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 1 : 0,
-  workers: process.env.CI ? 1 : undefined,
+  workers: 1,
   reporter: [
     ['list'],
     ['html', { outputFolder: 'prism-toolshop-playwright/reports/html-report', open: 'never' }],
@@ -22,6 +22,8 @@ module.exports = defineConfig({
     {
       name: 'ui-chromium',
       testMatch: '**/ui/**/*.spec.js',
+      workers: 1,
+      timeout: 60000,
       use: { ...devices['Desktop Chrome'] },
     },
     {
