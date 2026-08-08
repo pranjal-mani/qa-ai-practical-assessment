@@ -3,8 +3,8 @@
     "country": "NL",
     "postal_code": "1234AA",
     "house_number": "42",
-    "street": "Test Street",
-    "city": "Amsterdam",
+    "street": "de Bruijnsingel",
+    "city": "Idaerd",
     "state": "NH"
   },
   "missingHouseNumber": {
