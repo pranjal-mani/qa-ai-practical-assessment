@@ -119,12 +119,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 13311,
+                      "duration": 12617,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-08-08T12:29:55.996Z",
+                      "startTime": "2026-08-08T13:33:37.427Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -155,12 +155,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 5490,
+                      "duration": 6850,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-08-08T12:30:09.824Z",
+                      "startTime": "2026-08-08T13:33:50.288Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -185,7 +185,7 @@
       "specs": [
         {
           "title": "TC-UI-006 @regression multi-product cart recalculates total after quantity update",
-          "ok": false,
+          "ok": true,
           "tags": [
             "regression"
           ],
@@ -200,50 +200,18 @@
                 {
                   "workerIndex": 0,
                   "parallelIndex": 0,
-                  "status": "timedOut",
-                  "duration": 60227,
-                  "error": {
-                    "message": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m",
-                    "stack": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
-                  },
-                  "errors": [
-                    {
-                      "message": "\u001b[31mTest timeout of 60000ms exceeded.\u001b[39m"
-                    },
-                    {
-                      "location": {
-                        "file": "C:\\Users\\Pranjal Kumar\\Documents\\Work\\AI_Assessment\\qa-ai-practical-assessment\\prism-toolshop-playwright\\pages\\HomePage.js",
-                        "column": 21,
-                        "line": 10
-                      },
-                      "message": "Error: page.goto: Target page, context or browser has been closed\n\n   at ..\\pages\\HomePage.js:10\n\n   8 |\n   9 |   async goto() {\n> 10 |     await this.page.goto(this.path);\n     |                     ^\n  11 |     await this.page.locator('[data-test=\"search-query\"]').waitFor({ state: 'visible' });\n  12 |     await this.productLinks().first().waitFor({ state: 'visible', timeout: 30000 });\n  13 |   }\n    at HomePage.goto (C:\\Users\\Pranjal Kumar\\Documents\\Work\\AI_Assessment\\qa-ai-practical-assessment\\prism-toolshop-playwright\\pages\\HomePage.js:10:21)\n    at HomePage.openInStockProductByIndex (C:\\Users\\Pranjal Kumar\\Documents\\Work\\AI_Assessment\\qa-ai-practical-assessment\\prism-toolshop-playwright\\pages\\HomePage.js:48:20)\n    at C:\\Users\\Pranjal Kumar\\Documents\\Work\\AI_Assessment\\qa-ai-practical-assessment\\prism-toolshop-playwright\\tests\\ui\\cart.spec.js:52:22"
-                    }
-                  ],
+                  "status": "passed",
+                  "duration": 24880,
+                  "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-08-08T12:30:15.362Z",
+                  "startTime": "2026-08-08T13:33:57.156Z",
                   "annotations": [],
-                  "attachments": [
-                    {
-                      "name": "screenshot",
-                      "contentType": "image/png",
-                      "path": "C:\\Users\\Pranjal Kumar\\Documents\\Work\\AI_Assessment\\qa-ai-practical-assessment\\test-results\\ui-cart-TC-UI-006-regressi-2c0ac-total-after-quantity-update-ui-chromium\\test-failed-1.png"
-                    },
-                    {
-                      "name": "video",
-                      "contentType": "video/webm",
-                      "path": "C:\\Users\\Pranjal Kumar\\Documents\\Work\\AI_Assessment\\qa-ai-practical-assessment\\test-results\\ui-cart-TC-UI-006-regressi-2c0ac-total-after-quantity-update-ui-chromium\\video.webm"
-                    },
-                    {
-                      "name": "error-context",
-                      "contentType": "text/markdown",
-                      "path": "C:\\Users\\Pranjal Kumar\\Documents\\Work\\AI_Assessment\\qa-ai-practical-assessment\\test-results\\ui-cart-TC-UI-006-regressi-2c0ac-total-after-quantity-update-ui-chromium\\error-context.md"
-                    }
-                  ]
+                  "attachments": []
                 }
               ],
-              "status": "unexpected"
+              "status": "expected"
             }
           ],
           "id": "fedf6523912390004e76-9911a608f8ede7aab460",
@@ -274,10 +242,10 @@
               "projectName": "ui-chromium",
               "results": [
                 {
-                  "workerIndex": 1,
+                  "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 37010,
+                  "duration": 17249,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
@@ -285,14 +253,14 @@
                   "steps": [
                     {
                       "title": "missing house_number keeps proceed-3 disabled",
-                      "duration": 128
+                      "duration": 106
                     },
                     {
                       "title": "invalid postcode for country blocks checkout completion",
-                      "duration": 1523
+                      "duration": 1506
                     }
                   ],
-                  "startTime": "2026-08-08T12:31:16.976Z",
+                  "startTime": "2026-08-08T13:34:22.051Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -315,7 +283,7 @@
       "specs": [
         {
           "title": "TC-UI-008 @Smoke @regression COD checkout with double confirm and My Invoices listing",
-          "ok": false,
+          "ok": true,
           "tags": [
             "Smoke",
             "regression"
@@ -329,60 +297,20 @@
               "projectName": "ui-chromium",
               "results": [
                 {
-                  "workerIndex": 1,
+                  "workerIndex": 0,
                   "parallelIndex": 0,
-                  "status": "failed",
-                  "duration": 98676,
-                  "error": {
-                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoMatch\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\n\u001b[1mMatcher error\u001b[22m: \u001b[31mreceived\u001b[39m value must be a string\n\nReceived has value: \u001b[31mnull\u001b[39m\n\nCall Log:\n- Timeout 40000ms exceeded while waiting on the predicate",
-                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoMatch\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\n\u001b[1mMatcher error\u001b[22m: \u001b[31mreceived\u001b[39m value must be a string\n\nReceived has value: \u001b[31mnull\u001b[39m\n\nCall Log:\n- Timeout 40000ms exceeded while waiting on the predicate\n    at CheckoutPage.clickConfirmTwice (C:\\Users\\Pranjal Kumar\\Documents\\Work\\AI_Assessment\\qa-ai-practical-assessment\\prism-toolshop-playwright\\pages\\CheckoutPage.js:98:10)\n    at C:\\Users\\Pranjal Kumar\\Documents\\Work\\AI_Assessment\\qa-ai-practical-assessment\\prism-toolshop-playwright\\tests\\ui\\checkout-invoice.spec.js:57:3",
-                    "location": {
-                      "file": "C:\\Users\\Pranjal Kumar\\Documents\\Work\\AI_Assessment\\qa-ai-practical-assessment\\prism-toolshop-playwright\\pages\\CheckoutPage.js",
-                      "column": 10,
-                      "line": 98
-                    },
-                    "snippet": "   at ..\\pages\\CheckoutPage.js:98\n\n   96 |       await expect\n   97 |         .poll(async () => this.getInvoiceNumberFromPage() || '', { timeout: 40000 })\n>  98 |         .toMatch(/^INV-/);\n      |          ^\n   99 |     }\n  100 |   }\n  101 |"
-                  },
-                  "errors": [
-                    {
-                      "location": {
-                        "file": "C:\\Users\\Pranjal Kumar\\Documents\\Work\\AI_Assessment\\qa-ai-practical-assessment\\prism-toolshop-playwright\\pages\\CheckoutPage.js",
-                        "column": 10,
-                        "line": 98
-                      },
-                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoMatch\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\n\u001b[1mMatcher error\u001b[22m: \u001b[31mreceived\u001b[39m value must be a string\n\nReceived has value: \u001b[31mnull\u001b[39m\n\nCall Log:\n- Timeout 40000ms exceeded while waiting on the predicate\n\n   at ..\\pages\\CheckoutPage.js:98\n\n   96 |       await expect\n   97 |         .poll(async () => this.getInvoiceNumberFromPage() || '', { timeout: 40000 })\n>  98 |         .toMatch(/^INV-/);\n      |          ^\n   99 |     }\n  100 |   }\n  101 |\n    at CheckoutPage.clickConfirmTwice (C:\\Users\\Pranjal Kumar\\Documents\\Work\\AI_Assessment\\qa-ai-practical-assessment\\prism-toolshop-playwright\\pages\\CheckoutPage.js:98:10)\n    at C:\\Users\\Pranjal Kumar\\Documents\\Work\\AI_Assessment\\qa-ai-practical-assessment\\prism-toolshop-playwright\\tests\\ui\\checkout-invoice.spec.js:57:3"
-                    }
-                  ],
+                  "status": "passed",
+                  "duration": 20377,
+                  "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-08-08T12:31:54.494Z",
+                  "startTime": "2026-08-08T13:34:39.320Z",
                   "annotations": [],
-                  "attachments": [
-                    {
-                      "name": "screenshot",
-                      "contentType": "image/png",
-                      "path": "C:\\Users\\Pranjal Kumar\\Documents\\Work\\AI_Assessment\\qa-ai-practical-assessment\\test-results\\ui-checkout-invoice-TC-UI--3cbe8-irm-and-My-Invoices-listing-ui-chromium\\test-failed-1.png"
-                    },
-                    {
-                      "name": "video",
-                      "contentType": "video/webm",
-                      "path": "C:\\Users\\Pranjal Kumar\\Documents\\Work\\AI_Assessment\\qa-ai-practical-assessment\\test-results\\ui-checkout-invoice-TC-UI--3cbe8-irm-and-My-Invoices-listing-ui-chromium\\video.webm"
-                    },
-                    {
-                      "name": "error-context",
-                      "contentType": "text/markdown",
-                      "path": "C:\\Users\\Pranjal Kumar\\Documents\\Work\\AI_Assessment\\qa-ai-practical-assessment\\test-results\\ui-checkout-invoice-TC-UI--3cbe8-irm-and-My-Invoices-listing-ui-chromium\\error-context.md"
-                    }
-                  ],
-                  "errorLocation": {
-                    "file": "C:\\Users\\Pranjal Kumar\\Documents\\Work\\AI_Assessment\\qa-ai-practical-assessment\\prism-toolshop-playwright\\pages\\CheckoutPage.js",
-                    "column": 10,
-                    "line": 98
-                  }
+                  "attachments": []
                 }
               ],
-              "status": "unexpected"
+              "status": "expected"
             }
           ],
           "id": "58161a7c53336fca4076-2ef9ebc2f85eab238e54",
@@ -413,15 +341,15 @@
               "projectName": "ui-chromium",
               "results": [
                 {
-                  "workerIndex": 2,
+                  "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 16764,
+                  "duration": 9964,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-08-08T12:33:34.371Z",
+                  "startTime": "2026-08-08T13:34:59.712Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -464,15 +392,15 @@
                   "projectName": "ui-chromium",
                   "results": [
                     {
-                      "workerIndex": 2,
+                      "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 5192,
+                      "duration": 4451,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-08-08T12:33:51.491Z",
+                      "startTime": "2026-08-08T13:35:09.689Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -500,15 +428,15 @@
                   "projectName": "ui-chromium",
                   "results": [
                     {
-                      "workerIndex": 2,
+                      "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 6832,
+                      "duration": 9178,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-08-08T12:33:56.696Z",
+                      "startTime": "2026-08-08T13:35:14.149Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -553,15 +481,15 @@
                   "projectName": "api",
                   "results": [
                     {
-                      "workerIndex": 3,
+                      "workerIndex": 1,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 1547,
+                      "duration": 749,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-08-08T12:34:04.662Z",
+                      "startTime": "2026-08-08T13:35:23.873Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -589,15 +517,15 @@
                   "projectName": "api",
                   "results": [
                     {
-                      "workerIndex": 3,
+                      "workerIndex": 1,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 1421,
+                      "duration": 1342,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-08-08T12:34:06.279Z",
+                      "startTime": "2026-08-08T13:35:24.657Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -626,15 +554,15 @@
                   "projectName": "api",
                   "results": [
                     {
-                      "workerIndex": 3,
+                      "workerIndex": 1,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 2003,
+                      "duration": 1796,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-08-08T12:34:07.718Z",
+                      "startTime": "2026-08-08T13:35:26.005Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -662,15 +590,15 @@
                   "projectName": "api",
                   "results": [
                     {
-                      "workerIndex": 3,
+                      "workerIndex": 1,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 1455,
+                      "duration": 1284,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-08-08T12:34:09.738Z",
+                      "startTime": "2026-08-08T13:35:27.807Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -695,7 +623,7 @@
       "specs": [
         {
           "title": "TC-API-006 @regression cart lifecycle supports multiple products and quantity update",
-          "ok": false,
+          "ok": true,
           "tags": [
             "regression"
           ],
@@ -708,42 +636,20 @@
               "projectName": "api",
               "results": [
                 {
-                  "workerIndex": 3,
+                  "workerIndex": 1,
                   "parallelIndex": 0,
-                  "status": "timedOut",
-                  "duration": 30014,
-                  "error": {
-                    "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
-                    "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
-                  },
-                  "errors": [
-                    {
-                      "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
-                    },
-                    {
-                      "location": {
-                        "file": "C:\\Users\\Pranjal Kumar\\Documents\\Work\\AI_Assessment\\qa-ai-practical-assessment\\prism-toolshop-playwright\\api\\cartApi.js",
-                        "column": 25,
-                        "line": 10
-                      },
-                      "message": "Error: apiRequestContext.post: Request context disposed.\nCall log:\n\u001b[2m  - → POST https://api.practicesoftwaretesting.com/carts\u001b[22m\n\u001b[2m    - user-agent: Playwright/1.62.1 (x64; windows 10.0) node/22.13\u001b[22m\n\u001b[2m    - accept: */*\u001b[22m\n\u001b[2m    - accept-encoding: gzip,deflate,br\u001b[22m\n\n\n   at ..\\api\\cartApi.js:10\n\n   8 |\n   9 |   createCart() {\n> 10 |     return this.request.post(this.paths.carts);\n     |                         ^\n  11 |   }\n  12 |\n  13 |   addItem(cartId, productId, quantity) {\n    at CartApi.createCart (C:\\Users\\Pranjal Kumar\\Documents\\Work\\AI_Assessment\\qa-ai-practical-assessment\\prism-toolshop-playwright\\api\\cartApi.js:10:25)\n    at C:\\Users\\Pranjal Kumar\\Documents\\Work\\AI_Assessment\\qa-ai-practical-assessment\\prism-toolshop-playwright\\tests\\api\\cart.spec.js:15:40"
-                    }
-                  ],
+                  "status": "passed",
+                  "duration": 3045,
+                  "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-08-08T12:34:11.226Z",
+                  "startTime": "2026-08-08T13:35:29.103Z",
                   "annotations": [],
-                  "attachments": [
-                    {
-                      "name": "error-context",
-                      "contentType": "text/markdown",
-                      "path": "C:\\Users\\Pranjal Kumar\\Documents\\Work\\AI_Assessment\\qa-ai-practical-assessment\\test-results\\api-cart-TC-API-006-regres-93c10-roducts-and-quantity-update-api\\error-context.md"
-                    }
-                  ]
+                  "attachments": []
                 }
               ],
-              "status": "unexpected"
+              "status": "expected"
             }
           ],
           "id": "d8b46cfdb3e675e3e1bb-42a5e8db13f42576e6a0",
@@ -781,15 +687,15 @@
                   "projectName": "api",
                   "results": [
                     {
-                      "workerIndex": 4,
+                      "workerIndex": 1,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 3443,
+                      "duration": 3331,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-08-08T12:34:41.665Z",
+                      "startTime": "2026-08-08T13:35:32.158Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -818,15 +724,15 @@
                   "projectName": "api",
                   "results": [
                     {
-                      "workerIndex": 4,
+                      "workerIndex": 1,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 5739,
+                      "duration": 4863,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-08-08T12:34:45.136Z",
+                      "startTime": "2026-08-08T13:35:35.495Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -864,15 +770,15 @@
               "projectName": "api",
               "results": [
                 {
-                  "workerIndex": 4,
+                  "workerIndex": 1,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 1514,
+                  "duration": 1579,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-08-08T12:34:50.890Z",
+                  "startTime": "2026-08-08T13:35:40.367Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -890,11 +796,11 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-08-08T12:29:54.430Z",
-    "duration": 297995.99299999996,
-    "expected": 13,
+    "startTime": "2026-08-08T13:33:36.768Z",
+    "duration": 125201.365,
+    "expected": 16,
     "skipped": 0,
-    "unexpected": 3,
+    "unexpected": 0,
     "flaky": 0
   }
 }

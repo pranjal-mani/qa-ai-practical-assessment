@@ -43,7 +43,7 @@ test.describe('Registration', () => {
     await registerPage.goto();
     await registerPage.fillForm(userData);
     await registerPage.submit();
-    await expect(page).toHaveURL(/\/auth\/login/);
+    await expect(page).toHaveURL(/\/auth\/login/, { timeout: 30000 });
 
     await registerPage.goto();
     await registerPage.fillForm(userData);

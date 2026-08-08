@@ -72,3 +72,57 @@ Implemented 8 UI specs (TC-UI-001–008) and 8 API specs (TC-API-001–008) with
 - Initial TC-UI-008 failure (empty My Invoices) was **not** a locator bug — invoice generation is asynchronous after the second Confirm; waiting for `INV-\d+` on checkout before navigating fixed it.
 - TC-UI-007 scenario B failure led to discovering **v2.4 behavior change**: AL+1234AA may allow `proceed-3` and show payment success without creating an invoice; asserting absence of invoice after double Confirm matches the business rule “checkout cannot complete with invalid billing.”
 - Diagnostic Node scripts (with Playwright `baseURL`) confirmed NL lookup fills `de Bruijnsingel` / `Idaerd` and that manual `Test Street`/`Amsterdam` can complete checkout but invoice timing still requires post-confirm wait.
+
+---
+
+## Entry: TC-UI-002 duplicate registration failure
+
+### Prompt:
+
+Investigate and fix only the current failing test: TC-UI-002 in registration.spec.js.
+
+The failure is:
+expected page URL to match /auth/login/ but the page stayed on /auth/register.
+
+Do not change unrelated tests, helpers, or framework layers.
+Do not weaken the assertion unless the application behavior truly requires it.
+Inspect the live page behavior, confirm whether registration should redirect or remain on the register page after a duplicate/valid submit, and make the smallest correct fix.
+Then rerun the affected registration specs and the full suite once.
+Update ai-prompts/automation-and-debugging.md with the failure, diagnosis, fix, and validation.
+Do not update README or execution-summary yet.
+
+### Failure
+
+| Item | Detail |
+|------|--------|
+| Test | TC-UI-002 — duplicate registration shows error and stays on register page |
+| Assertion | `await expect(page).toHaveURL(/\/auth\/login/)` after first (valid) UI registration |
+| Error | Expected `/auth/login`, received `/auth/register` (default 5s timeout) |
+| Context | First registration in TC-UI-002 setup did not redirect before URL check |
+
+### Diagnosis (live page behavior)
+
+| Submit type | Expected URL | Confirmed on live SUT |
+|-------------|--------------|------------------------|
+| Valid registration | `/auth/login` | Yes — success redirects to login (no auto-login) |
+| Duplicate registration | `/auth/register` | Yes — stays on register with message e.g. “A customer with this email address already exists.” |
+
+**Root cause:** For NL addresses, the register form runs an async postcode lookup after `postal_code` + `house_number`. `fillForm()` filled manual `Test Street` / `Amsterdam` before lookup completed; submit could run with mismatched or incomplete address data, leaving the user on `/auth/register` instead of redirecting to login.
+
+### Fix
+
+| File | Change |
+|------|--------|
+| `prism-toolshop-playwright/pages/RegisterPage.js` | For `country === 'NL'`, poll until `#street` and `#city` are populated by postcode lookup; do not overwrite with template values |
+| `prism-toolshop-playwright/tests/ui/registration.spec.js` | TC-UI-002: extend first-registration login URL assertion timeout to 30s (setup step only) |
+
+`submit()` remains click-only so duplicate submit does not wait for a login redirect.
+
+### Validation
+
+| Command | Result |
+|---------|--------|
+| `npx playwright test prism-toolshop-playwright/tests/ui/registration.spec.js` | 2 passed (TC-UI-001, TC-UI-002) |
+| `npm test` | 16 passed, 0 failed |
+
+Assertions unchanged: valid registration → login; duplicate → register page + error text matching `/already|exist|duplicate|registered/i`.

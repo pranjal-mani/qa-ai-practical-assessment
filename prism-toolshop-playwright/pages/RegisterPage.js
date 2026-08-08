@@ -1,4 +1,5 @@
 const testConfig = require('../test-data/test-config.json');
+const { expect } = require('@playwright/test');
 
 class RegisterPage {
   constructor(page) {
@@ -18,8 +19,19 @@ class RegisterPage {
     await this.page.locator('#country').selectOption(data.country);
     await this.page.locator('#postal_code').fill(data.postal_code);
     await this.page.locator('#house_number').fill(data.house_number);
-    await this.page.locator('#street').fill(data.street);
-    await this.page.locator('#city').fill(data.city);
+    if (data.country === 'NL') {
+      const street = this.page.locator('#street');
+      await expect
+        .poll(async () => (await street.inputValue()).trim(), { timeout: 15000 })
+        .not.toBe('');
+      const city = this.page.locator('#city');
+      await expect
+        .poll(async () => (await city.inputValue()).trim(), { timeout: 15000 })
+        .not.toBe('');
+    } else {
+      await this.page.locator('#street').fill(data.street);
+      await this.page.locator('#city').fill(data.city);
+    }
     await this.page.locator('#state').fill(data.state);
     await this.page.locator('#phone').fill(data.phone);
     await this.page.locator('#email').fill(data.email);
