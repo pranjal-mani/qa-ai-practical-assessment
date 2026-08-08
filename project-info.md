@@ -250,3 +250,22 @@ Error codes observed: **401** unauthorized, **422** validation (billing country 
 - Positive: valid registration, valid billing (NL+1234AA or assessment TG example), in-stock products
 - Negative: invalid login (401), invalid billing country (422), weak/leaked password (422), checkout without house_number
 - Edge: quantity update on cart line, multiple products, double confirm before invoice id appears
+
+---
+
+## Requirement-to-Test Traceability Matrix (Manual UI)
+
+| Requirement / AC | Risk covered | Manual test ID | Tags | Type | Priority |
+|------------------|--------------|----------------|------|------|----------|
+| AC1 UI — User registration | Unique password policy | TC-MAN-001 | @regression | Positive | High |
+| AC1 UI — Registration (negative) | Duplicate registration | TC-MAN-002 | @regression | Negative | Medium |
+| AC1 UI — Login + profile verification | — | TC-MAN-003 | @Smoke @regression | Positive | High |
+| AC1 UI — Login (negative) | Invalid login | TC-MAN-004 | @regression | Negative | Medium |
+| AC2 UI — Browse / search products | Search behavior | TC-MAN-005 | @regression | Positive | Medium |
+| AC2 UI — Cart (multiple items, quantity) | Cart total recalculation | TC-MAN-006 | @regression | Edge | High |
+| AC2 UI — Checkout billing validation | Missing `house_number`; billing-country/postcode | TC-MAN-007 | @regression | Negative | High |
+| AC2 UI — COD checkout, invoice, My Invoices | Double Confirm; invoice visibility | TC-MAN-008 | @Smoke @regression | Positive | Critical |
+
+**Manual suite file:** `FunctionalTestCase.csv` (8 cases — within assessment 5–8 limit per type)
+
+**Execution status:** All manual cases are **ToDo** (not executed in this phase; exploration evidence is in Application Behavior Analysis, not manual run results).
