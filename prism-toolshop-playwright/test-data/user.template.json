@@ -1,0 +1,24 @@
+{
+  "registration": {
+    "first_name": "QA",
+    "last_name": "Tester",
+    "dob": "1990-06-15",
+    "country": "NL",
+    "postal_code": "1234AA",
+    "house_number": "42",
+    "street": "Test Street",
+    "city": "Amsterdam",
+    "state": "NH",
+    "phone": "1234567890",
+    "email": "qa.auto.{unique}@example.com",
+    "password": "{generatedPassword}"
+  },
+  "invalidLogin": {
+    "password": "{invalidPassword}"
+  },
+  "_runtimeNotes": {
+    "unique": "Replace at runtime with timestamp or random suffix (e.g. Date.now()).",
+    "generatedPassword": "Build at runtime — unique strong password; never commit real values.",
+    "invalidPassword": "Build at runtime — must not match any registered user password."
+  }
+}

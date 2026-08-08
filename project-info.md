@@ -269,3 +269,91 @@ Error codes observed: **401** unauthorized, **422** validation (billing country 
 **Manual suite file:** `FunctionalTestCase.csv` (8 cases — within assessment 5–8 limit per type)
 
 **Execution status:** All manual cases are **ToDo** (not executed in this phase; exploration evidence is in Application Behavior Analysis, not manual run results).
+
+---
+
+## Test Data Strategy (Automation)
+
+| File | Purpose |
+|------|---------|
+| `prism-toolshop-playwright/test-data/test-config.json` | UI/API base URLs and confirmed route paths |
+| `prism-toolshop-playwright/test-data/user.template.json` | Registration field shapes; `{unique}` email; passwords generated at runtime |
+| `prism-toolshop-playwright/test-data/billing-ui.template.json` | UI checkout billing (valid NL, missing house_number, invalid AL+postcode) + COD payment method |
+| `prism-toolshop-playwright/test-data/billing-api-invalid.template.json` | API invoice body template for billing validation negative (422) |
+| `prism-toolshop-playwright/test-data/invoice-payload.template.json` | Confirmed valid API COD invoice body; `{cartId}` filled at runtime |
+| `prism-toolshop-playwright/test-data/search.template.json` | Confirmed search term |
+
+**Runtime rules (no hardcoded secrets or volatile IDs):**
+
+- Email: `qa.auto.{unique}@example.com` where `{unique}` = `Date.now()` or similar.
+- Passwords: generated per run in test helpers; never committed.
+- Product IDs, cart IDs, invoice IDs: read from UI listing or API responses at runtime.
+- Tokens: obtained from login response `access_token`; never stored in repo.
+
+---
+
+## Automation Plan (UI + API)
+
+Planned spec files (not implemented yet). Each maps 1:1 to manual `TC-MAN-001`–`008`. Assessment cap: 8 UI + 8 API.
+
+### UI automation (`prism-toolshop-playwright/tests/ui/`)
+
+| Auto ID | Manual ref | Title | Tags | Spec file (planned) |
+|---------|------------|-------|------|---------------------|
+| TC-UI-001 | TC-MAN-001 | Valid registration → redirect to login | @regression | `registration.spec.js` |
+| TC-UI-002 | TC-MAN-002 | Duplicate registration error | @regression | `registration.spec.js` |
+| TC-UI-003 | TC-MAN-003 | Login + profile verification | @Smoke @regression | `auth-profile.spec.js` |
+| TC-UI-004 | TC-MAN-004 | Invalid login | @regression | `auth-profile.spec.js` |
+| TC-UI-005 | TC-MAN-005 | Search + product details | @regression | `products.spec.js` |
+| TC-UI-006 | TC-MAN-006 | Multi-product cart + quantity total | @regression | `cart.spec.js` |
+| TC-UI-007 | TC-MAN-007 | Billing validation (house_number + postcode) | @regression | `checkout-billing.spec.js` |
+| TC-UI-008 | TC-MAN-008 | COD + double Confirm + My Invoices | @Smoke @regression | `checkout-invoice.spec.js` |
+
+**UI data-test selectors (confirmed only):** `first-name`, `last-name`, `dob`, `country`, `postal_code`, `house_number`, `street`, `city`, `state`, `phone`, `email`, `password`, `login-submit`, `search-query`, `add-to-cart`, `nav-cart`, `product-quantity`, `cart-total`, `proceed-1`, `proceed-2`, `proceed-3`, `payment-method`, `finish`, `postcode-lookup-error`, `unit-price`, `product-description`, `nav-my-invoices`.
+
+### API automation (`prism-toolshop-playwright/tests/api/`)
+
+| Auto ID | Manual ref | Title | Tags | Spec file (planned) |
+|---------|------------|-------|------|---------------------|
+| TC-API-001 | TC-MAN-001 | POST `/users/register` → 201 | @regression | `auth.spec.js` |
+| TC-API-002 | TC-MAN-002 | Duplicate register → 409 | @regression | `auth.spec.js` |
+| TC-API-003 | TC-MAN-003 | Login → 200 token + GET `/users/me` | @Smoke @regression | `auth.spec.js` |
+| TC-API-004 | TC-MAN-004 | Invalid login → 401 | @regression | `auth.spec.js` |
+| TC-API-005 | TC-MAN-005 | GET `/products` + GET `/products/search?q=Pliers` | @regression | `products.spec.js` |
+| TC-API-006 | TC-MAN-006 | Cart create, add 2 products, PUT quantity, GET cart | @regression | `cart.spec.js` |
+| TC-API-007 | TC-MAN-007 | POST `/invoices` invalid billing → 422 | @regression | `invoice.spec.js` |
+| TC-API-008 | TC-MAN-008 | Full COD invoice + GET `/invoices` list | @Smoke @regression | `invoice.spec.js` |
+
+**API endpoints (confirmed only):** see Application Behavior Analysis and `test-config.json` paths.
+
+### Smoke vs regression (automation)
+
+| Suite | UI tests | API tests |
+|-------|----------|-----------|
+| **@Smoke** | TC-UI-003, TC-UI-008 | TC-API-003, TC-API-008 |
+| **@regression** | TC-UI-001–008 (all) | TC-API-001–008 (all) |
+
+### Planned page objects (`prism-toolshop-playwright/pages/`)
+
+| Module | Responsibility | Confirmed elements / routes |
+|--------|----------------|----------------------------|
+| `RegisterPage.js` | Fill registration form, submit | `/auth/register`; fields `#first_name` … `#password` / matching `data-test` |
+| `LoginPage.js` | Login submit | `/auth/login`; `#email`, `#password`, `[data-test=login-submit]` |
+| `ProfilePage.js` | Read profile fields | `/account/profile`; `#first_name`, `#email` |
+| `HomePage.js` | Search, open product by link | `[data-test=search-query]`, `a[href*="/product/"]` |
+| `ProductPage.js` | Product detail assertions, add to cart | `[data-test=unit-price]`, `[data-test=product-description]`, `[data-test=add-to-cart]` |
+| `CheckoutPage.js` | Cart view, wizard, billing, payment, confirm | `[data-test=nav-cart]`, `proceed-1/2/3`, billing `data-test` fields, `[data-test=payment-method]`, `[data-test=finish]` |
+| `InvoicesPage.js` | My Invoices table | `/account/invoices`; table columns Invoice Number, Billing Address, Invoice Date, Total |
+
+No duplicate pages — cart and checkout share `CheckoutPage.js` (confirmed: `nav-cart` opens checkout flow).
+
+### Planned API helpers (`prism-toolshop-playwright/api/`)
+
+| Module | Responsibility | Confirmed endpoints |
+|--------|----------------|---------------------|
+| `authApi.js` | register, login, getMe | POST `/users/register`, POST `/users/login`, GET `/users/me` |
+| `productsApi.js` | listProducts, searchProducts, getProduct | GET `/products`, GET `/products/search`, GET `/products/{productId}` |
+| `cartApi.js` | createCart, addItem, getCart, updateQuantity | POST `/carts`, POST `/carts/{id}`, GET `/carts/{cartId}`, PUT `/carts/{cartId}/product/quantity` |
+| `invoiceApi.js` | createInvoice, listInvoices, getInvoice | POST `/invoices`, GET `/invoices`, GET `/invoices/{invoiceId}` |
+
+Shared: read `test-config.json` for base URLs; attach `Authorization: Bearer {token}` from login (not stored in repo).

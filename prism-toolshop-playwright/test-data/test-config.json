@@ -1,8 +1,25 @@
 {
   "ui": {
-    "baseUrl": "https://practicesoftwaretesting.com"
+    "baseUrl": "https://practicesoftwaretesting.com",
+    "paths": {
+      "home": "/",
+      "register": "/auth/register",
+      "login": "/auth/login",
+      "profile": "/account/profile",
+      "checkout": "/checkout",
+      "invoices": "/account/invoices"
+    }
   },
   "api": {
-    "baseUrl": "https://api.practicesoftwaretesting.com"
+    "baseUrl": "https://api.practicesoftwaretesting.com",
+    "paths": {
+      "register": "/users/register",
+      "login": "/users/login",
+      "me": "/users/me",
+      "products": "/products",
+      "productSearch": "/products/search",
+      "carts": "/carts",
+      "invoices": "/invoices"
+    }
   }
 }

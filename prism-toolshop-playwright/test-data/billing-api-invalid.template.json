@@ -1,0 +1,11 @@
+{
+  "billing_street": "Test Street",
+  "billing_city": "Test City",
+  "billing_state": "Test State",
+  "billing_country": "NL",
+  "billing_postal_code": "1234AA",
+  "payment_method": "cash-on-delivery",
+  "cart_id": "{cartId}",
+  "payment_details": {},
+  "_note": "Example mismatch payload for API billing validation (422). Country/city/postcode combination must not match per API rules."
+}

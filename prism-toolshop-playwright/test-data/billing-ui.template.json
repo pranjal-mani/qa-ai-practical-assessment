@@ -1,0 +1,23 @@
+{
+  "validCheckout": {
+    "country": "NL",
+    "postal_code": "1234AA",
+    "house_number": "42",
+    "street": "Test Street",
+    "city": "Amsterdam",
+    "state": "NH"
+  },
+  "missingHouseNumber": {
+    "country": "NL",
+    "postal_code": "1234AA",
+    "house_number": "",
+    "street": "Test Street",
+    "city": "Amsterdam",
+    "state": "NH"
+  },
+  "invalidPostcodeForCountry": {
+    "country": "AL",
+    "postal_code": "1234AA"
+  },
+  "paymentMethod": "cash-on-delivery"
+}
