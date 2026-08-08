@@ -25,6 +25,7 @@ class ProductPage {
     const cartQty = this.page.locator('[data-test="cart-quantity"]');
     const hadBadge = (await cartQty.count()) > 0;
     const before = hadBadge ? parseInt((await cartQty.textContent()) || '0', 10) : 0;
+    await expect(this.addToCartButton()).toBeEnabled({ timeout: 15000 });
     await this.addToCartButton().click();
     await expect(cartQty).toHaveText(String(before + 1), { timeout: 15000 });
   }

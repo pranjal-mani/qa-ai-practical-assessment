@@ -39,7 +39,7 @@ async function loginAndAddProductToCart(page) {
 
   const homePage = new HomePage(page);
   await homePage.goto();
-  await homePage.openProductByIndex(0);
+  await homePage.openInStockProductByIndex(0);
   const productPage = new ProductPage(page);
   await productPage.waitForLoaded();
   await productPage.addToCart();

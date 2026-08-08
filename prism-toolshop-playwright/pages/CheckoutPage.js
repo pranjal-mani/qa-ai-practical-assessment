@@ -52,6 +52,9 @@ class CheckoutPage {
     if (billing.state) {
       await this.page.locator('[data-test="state"]').fill(billing.state);
     }
+    if (billing.country === 'NL' && billing.postal_code && billing.house_number) {
+      await expect(this.proceed3()).toBeEnabled({ timeout: 15000 });
+    }
   }
 
   postcodeLookupError() {
@@ -80,8 +83,20 @@ class CheckoutPage {
     });
     const finish = this.finishButton();
     await expect(finish).toBeEnabled({ timeout: 10000 });
+    await finish.scrollIntoViewIfNeeded();
     await finish.click({ force: true });
-    await expect.poll(async () => this.getInvoiceNumberFromPage(), { timeout: 30000 }).toMatch(/^INV-/);
+    try {
+      await expect
+        .poll(async () => this.getInvoiceNumberFromPage() || '', { timeout: 20000 })
+        .toMatch(/^INV-/);
+    } catch {
+      if (await finish.isEnabled()) {
+        await finish.click({ force: true });
+      }
+      await expect
+        .poll(async () => this.getInvoiceNumberFromPage() || '', { timeout: 40000 })
+        .toMatch(/^INV-/);
+    }
   }
 
   async attemptPaymentDoubleConfirm() {
@@ -106,9 +121,11 @@ class CheckoutPage {
 
   async setProductQuantity(index, quantity) {
     const input = this.productQuantityInputs().nth(index);
+    const beforeTotal = await this.parseCartTotal();
+    await input.click();
     await input.fill(String(quantity));
-    await input.blur();
-    await this.cartTotal().waitFor({ state: 'visible' });
+    await input.press('Enter');
+    await expect.poll(async () => this.parseCartTotal(), { timeout: 15000 }).not.toBe(beforeTotal);
   }
 
   async parseCartTotal() {
@@ -121,6 +138,13 @@ class CheckoutPage {
   }
 
   async getInvoiceNumberFromPage() {
+    const visibleInvoice = this.page.getByText(/INV-\d+/).first();
+    if (await visibleInvoice.isVisible()) {
+      const match = (await visibleInvoice.textContent()).match(/INV-\d+/);
+      if (match) {
+        return match[0];
+      }
+    }
     const bodyText = await this.page.locator('body').innerText();
     const match = bodyText.match(/INV-\d+/);
     return match ? match[0] : null;

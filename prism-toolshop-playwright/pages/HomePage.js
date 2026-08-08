@@ -9,6 +9,7 @@ class HomePage {
   async goto() {
     await this.page.goto(this.path);
     await this.page.locator('[data-test="search-query"]').waitFor({ state: 'visible' });
+    await this.productLinks().first().waitFor({ state: 'visible', timeout: 30000 });
   }
 
   async search(term) {
@@ -28,6 +29,35 @@ class HomePage {
     const href = await link.getAttribute('href');
     await this.page.goto(href);
     await this.page.waitForURL(/\/product\//);
+  }
+
+  async openInStockProductByIndex(stockIndex) {
+    await this.productLinks().first().waitFor({ state: 'visible', timeout: 30000 });
+    const linkCount = await this.productLinks().count();
+    let inStockCount = 0;
+
+    for (let i = 0; i < linkCount; i++) {
+      const href = await this.productLinks().nth(i).getAttribute('href');
+      await this.page.goto(href);
+      await this.page.waitForURL(/\/product\//);
+
+      const addBtn = this.page.locator('[data-test="add-to-cart"]');
+      try {
+        await addBtn.waitFor({ state: 'visible', timeout: 15000 });
+      } catch {
+        await this.goto();
+        continue;
+      }
+      if (await addBtn.isEnabled()) {
+        if (inStockCount === stockIndex) {
+          return href;
+        }
+        inStockCount += 1;
+      }
+      await this.goto();
+    }
+
+    throw new Error(`In-stock product not found for stock index ${stockIndex}`);
   }
 }
 

@@ -41,8 +41,7 @@ test('TC-UI-006 @regression multi-product cart recalculates total after quantity
 
   const homePage = new HomePage(page);
   await homePage.goto();
-  const firstHref = await homePage.productLinks().nth(0).getAttribute('href');
-  await homePage.openProductByIndex(0);
+  const firstHref = await homePage.openInStockProductByIndex(0);
 
   const productPage = new ProductPage(page);
   await productPage.waitForLoaded();
@@ -50,9 +49,8 @@ test('TC-UI-006 @regression multi-product cart recalculates total after quantity
   await productPage.addToCart();
 
   await homePage.goto();
-  const secondHref = await homePage.productLinks().nth(1).getAttribute('href');
+  const secondHref = await homePage.openInStockProductByIndex(1);
   expect(secondHref).not.toBe(firstHref);
-  await homePage.openProductByIndex(1);
   await productPage.waitForLoaded();
   const priceB = parseFloat(await productPage.unitPrice().textContent());
   await productPage.addToCart();
