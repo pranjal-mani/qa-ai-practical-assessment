@@ -1,0 +1,10 @@
+{
+  "billing_street": "",
+  "billing_city": "",
+  "billing_state": "",
+  "billing_country": "",
+  "billing_postal_code": "",
+  "payment_method": "cash-on-delivery",
+  "cart_id": "",
+  "payment_details": {}
+}

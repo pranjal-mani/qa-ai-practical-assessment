@@ -1,0 +1,99 @@
+{
+  "config": {
+    "argv": [
+      "C:\\nodejs\\node.exe",
+      "C:\\Users\\Pranjal Kumar\\Documents\\Work\\AI_Assessment\\qa-ai-practical-assessment\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "--list"
+    ],
+    "configFile": "C:\\Users\\Pranjal Kumar\\Documents\\Work\\AI_Assessment\\qa-ai-practical-assessment\\playwright.config.js",
+    "rootDir": "C:/Users/Pranjal Kumar/Documents/Work/AI_Assessment/qa-ai-practical-assessment/prism-toolshop-playwright/tests",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {},
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "C:/Users/Pranjal Kumar/Documents/Work/AI_Assessment/qa-ai-practical-assessment/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {},
+        "id": "ui-chromium",
+        "name": "ui-chromium",
+        "testDir": "C:/Users/Pranjal Kumar/Documents/Work/AI_Assessment/qa-ai-practical-assessment/prism-toolshop-playwright/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/ui/**/*.spec.js"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "C:/Users/Pranjal Kumar/Documents/Work/AI_Assessment/qa-ai-practical-assessment/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {},
+        "id": "api",
+        "name": "api",
+        "testDir": "C:/Users/Pranjal Kumar/Documents/Work/AI_Assessment/qa-ai-practical-assessment/prism-toolshop-playwright/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/api/**/*.spec.js"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "html",
+        {
+          "outputFolder": "prism-toolshop-playwright/reports/html-report",
+          "open": "never"
+        }
+      ],
+      [
+        "json",
+        {
+          "outputFile": "prism-toolshop-playwright/reports/results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.62.1",
+    "workers": 8,
+    "webServer": null
+  },
+  "suites": [],
+  "errors": [
+    {
+      "message": "Error: No tests found",
+      "stack": "Error: No tests found"
+    }
+  ],
+  "stats": {
+    "startTime": "2026-08-08T07:35:49.985Z",
+    "duration": 5.656999999999925,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "ui": {
+    "baseUrl": "https://practicesoftwaretesting.com"
+  },
+  "api": {
+    "baseUrl": "https://api.practicesoftwaretesting.com"
+  }
+}

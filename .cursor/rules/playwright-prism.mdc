@@ -1,0 +1,16 @@
+---
+description: Playwright Prism-style conventions for this assessment project
+globs: prism-toolshop-playwright/**/*
+alwaysApply: false
+---
+
+# Playwright Prism Conventions
+
+- Use JavaScript only; no TypeScript unless explicitly requested.
+- UI specs live in `tests/ui/`; API specs in `tests/api/`.
+- Page objects go in `pages/`; API helpers go in `api/`. Do not duplicate helpers across folders.
+- Shared URLs and environment values live in `test-data/test-config.json` — do not hardcode base URLs in specs.
+- Tag automated tests with `@Smoke` or `@regression` (assessment limit: 5–8 cases per manual/UI/API type).
+- UI invoice flow requires pressing Confirm twice before invoice generation.
+- Keep one Playwright config at repo root (`playwright.config.js`).
+- Record meaningful AI prompts in `ai-prompts/` after each focused session.
